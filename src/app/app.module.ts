@@ -1,10 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule} from '@angular/forms';
-
+import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { UserSettingsFormComponent } from './user-settings-form/user-settings-form.component';
+
 
 @NgModule({
   declarations: [
@@ -14,6 +16,7 @@ import { UserSettingsFormComponent } from './user-settings-form/user-settings-fo
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CommonModule,
     FormsModule
   ],
   providers: [],
