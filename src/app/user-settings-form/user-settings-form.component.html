@@ -3,38 +3,38 @@
     <form #form="ngForm">
         <div class="form-group">
             <label for="name">Name</label>
-            <input id="name" name="name" class="form-control" ngModel>
+            <input id="name" name="name" class="form-control" [(ngModel)]="userSettings.name">
         </div>
         <div class="form-check form-group">
-            <input class="form-check-input" type="checkbox" value="" id="emailOffer" name="emailOffer" ngModel>
-            <label class="form-check-label" for="emailOffer">
+            <input class="form-check-input" type="checkbox" value="" id="emailOffers" name="emailOffers" [(ngModel)]="userSettings.emailOffers">
+            <label class="form-check-label" for="emailOffers">
               Email Special Offers
             </label>
           </div>  
           <p>User Interface Style</p>
          <div class="form-group">
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked ngModel>
-                <label class="form-check-label" for="exampleRadios1">
-                  Black Style
+                <input class="form-check-input" type="radio" name="interfaceStyle" id="interfaceStyle1" value="Dark" checked [(ngModel)]="userSettings.interfaceStyle">
+                <label class="form-check-label" for="interfaceStyle1">
+                  Dark
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" ngModel>
-                <label class="form-check-label" for="exampleRadios2">
-                  Blue Style
+                <input class="form-check-input" type="radio" name="interfaceStyle" id="interfaceStyle2" value="Grey" [(ngModel)]="userSettings.interfaceStyle">
+                <label class="form-check-label" for="interfaceStyle2">
+                  Grey
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" ngModel>
-                <label class="form-check-label" for="exampleRadios3">
-                  Green Style
+                <input class="form-check-input" type="radio" name="interfaceStyle" id="interfaceStyle3" value="Light" [(ngModel)]="userSettings.interfaceStyle">
+                <label class="form-check-label" for="interfaceStyle3">
+                  White
                 </label>
               </div>
          </div>
          <div class="form-group col-auto my-1">
             <label class="mr-sm-2 sr-only" for="subscriptType">Preference</label>
-            <select class="custom-select mr-sm-2" id="subscriptType" name="subscriptType" ngModel>
+            <select class="custom-select mr-sm-2" id="subscriptionType" name="subscriptionType" [(ngModel)]="userSettings.subscriptionType">
               <option selected>Choose...</option>
               <option value="1">Monthly</option>
               <option value="2">Annual</option>
@@ -43,7 +43,7 @@
           </div>
           <div class="form-group">
               <label for="notes">Notes</label>
-              <textarea id="notes" class="form-control" name="notes" rows="3" ngModel></textarea>
+              <textarea id="notes" class="form-control" name="notes" rows="3" [(ngModel)]="userSettings.notes"></textarea>
           </div>
          
         <button class="btn btn-primary">Send</button>
@@ -51,6 +51,6 @@
     </form>
 </div>
 <div>
-  {{ form.value | json}}
+  {{ userSettings | json}}
 </div>
 
