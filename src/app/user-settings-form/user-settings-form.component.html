@@ -20,7 +20,16 @@
           </div>  
           <p>User Interface Style</p>
          <div class="form-group">
-            <div class="form-check">
+          <pre class="card card-block card-header">{{userSettings.interfaceStyle || 'null'}}</pre>
+          <div class="btn-group">
+            <label class="btn btn-primary" [(ngModel)]="userSettings.interfaceStyle"
+              name="btnRadio1"   btnRadio="Light" tabindex="0" role="button">Light</label>
+            <label class="btn btn-primary" [(ngModel)]="userSettings.interfaceStyle"
+            name="btnRadio2"    btnRadio="Medium" tabindex="0" role="button">Medium</label>
+            <label class="btn btn-primary" [(ngModel)]="userSettings.interfaceStyle"
+            name="btnRadio3"    btnRadio="Dark" tabindex="0" role="button">Dark</label>
+          </div>
+            <!-- <div class="form-check">
                 <input class="form-check-input" type="radio" name="interfaceStyle" id="interfaceStyle1" value="Dark" checked [(ngModel)]="userSettings.interfaceStyle">
                 <label class="form-check-label" for="interfaceStyle1">
                   Dark
@@ -37,7 +46,7 @@
                 <label class="form-check-label" for="interfaceStyle3">
                   White
                 </label>
-              </div>
+              </div> -->
          </div>
          <div class="form-group col-auto my-1">
             <label class="mr-sm-2 sr-only" for="subscriptionType">Preference</label>
@@ -54,6 +63,28 @@
           <div class="form-group">
               <label for="notes">Notes</label>
               <textarea id="notes" class="form-control" name="notes" rows="3" [(ngModel)]="userSettings.notes"></textarea>
+          </div>
+          <div class="form-group">
+            <pre class="card card-block card-header">{{singleModel}}</pre>
+            <button type="button" class="btn btn-primary" name="button"
+                    [(ngModel)]="singleModel" btnCheckbox
+                    btnCheckboxTrue="1" btnCheckboxFalse="0">
+              Single Toggle
+            </button>
+          </div>
+          <div class="col-md-2 col-xs-2 col-lg-2 form-group">
+            <label for="startDate">Start Date</label>           
+              <input type="text"
+                     placeholder="Start Date"
+                     class="form-control"
+                     [(ngModel)]="startDate" name="startDate" id="startDate"
+                     bsDatepicker>           
+          </div>
+          <div class="form-group">
+            <label for="userRating">User Rating</label> 
+            <rating [(ngModel)]="userRating" [max]="maxRating" [readonly]="isReadonly"
+             name="userRating" id="userRating"></rating>
+              
           </div>
          <div [hidden]= "!postError" class="alert alert-danger">
            {{ postErrorMessage }}           
