@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserSettings } from '../model/user-settings-model';
 import { NgForm, NgControl, NgModel } from '@angular/forms';
+import { DataService } from '../data/data.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-user-settings-form',
@@ -15,19 +17,37 @@ export class UserSettingsFormComponent implements OnInit {
     subscriptionType: null,
     notes: null
   }
-
-  //make a copy and spread data {...}
+    //make a copy and spread data {...}
   userSettings : UserSettings = {...this.originalUserSettings};
-  constructor() { }
+  postError: boolean = false;
+  postErrorMessage: string = '';
+  subscriptionTypes: Observable<string[]>;
+  constructor(private dataservice: DataService) { }
 
   ngOnInit(): void {
-
+    this.subscriptionTypes= this.dataservice.getSubscriptionTypes();   
   }
 
   onSubmit(form: NgForm): void {
     console.log('in onSubmit: ', form.valid);
+    if (form.valid){
+      this.dataservice.postUserSettingsForm(this.userSettings).subscribe(
+        result => console.log('success: ', result),
+        error => this.onHttpError(error)
+      );
+    }
+    else{
+      this.postError = true;
+      this.postErrorMessage = "Please fix the above errors."
+    }
+   
   }
  
+  onHttpError(errorResponse: any){
+    console.log('error: ', errorResponse);
+    this.postError = true;
+    this.postErrorMessage = errorResponse.error.errorMessage;
+  }
   onBlur(field: NgModel){
     console.log('in blur: ', field.valid);
   }

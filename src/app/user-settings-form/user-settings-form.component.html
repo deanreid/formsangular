@@ -40,19 +40,24 @@
               </div>
          </div>
          <div class="form-group col-auto my-1">
-            <label class="mr-sm-2 sr-only" for="subscriptType">Preference</label>
+            <label class="mr-sm-2 sr-only" for="subscriptionType">Preference</label>
             <select class="custom-select mr-sm-2" id="subscriptionType" name="subscriptionType" [(ngModel)]="userSettings.subscriptionType">
-              <option selected>Choose...</option>
+              <option *ngFor="let type of subscriptionTypes | async">
+                {{ type }}
+              </option>
+              <!-- <option selected>Choose...</option>
               <option value="1">Monthly</option>
               <option value="2">Annual</option>
-              <option value="3">Lifetime</option>
+              <option value="3">Lifetime</option> -->
             </select>
           </div>
           <div class="form-group">
               <label for="notes">Notes</label>
               <textarea id="notes" class="form-control" name="notes" rows="3" [(ngModel)]="userSettings.notes"></textarea>
           </div>
-         
+         <div [hidden]= "!postError" class="alert alert-danger">
+           {{ postErrorMessage }}           
+         </div>
         <button class="btn btn-primary">Send</button>
        
     </form>
